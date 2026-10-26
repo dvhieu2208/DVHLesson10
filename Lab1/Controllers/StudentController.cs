@@ -41,21 +41,13 @@ namespace Lab1.Controllers
         {
             if (ModelState.IsValid)
             {
-                
-                if (listStudents.Count > 0)
-                {
-                    s.Id = listStudents.Last().Id + 1;
-                }
-                else
-                {
-                    s.Id = 101;
-                }
 
+                s.Id = listStudents.Last<Student>().Id + 1;
                
                 listStudents.Add(s);
 
-                
-                return RedirectToAction("Index");
+
+                return View("Index", listStudents);
             }
 
             ViewBag.AllGenders = Enum.GetValues(typeof(Gender)).Cast<Gender>().ToList();
